@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import styled from "styled-components";
 import cover from "../media/cover.jpeg"
 
@@ -15,7 +15,7 @@ const Container = styled.div`
 	background-size: cover;
 	
 `;
-const Box = ({active, mole, score}) => {
+const Box = ({active, mole, score, id}) => {
 	const [hit, setHit] = useState(false);
 	const scored = () => {
 		if (active) {
@@ -32,6 +32,7 @@ const Box = ({active, mole, score}) => {
 		           onMouseUp={() => setHit(false)}
 		           onClick={() => scored()}
 		>
+
 		</Container>
 	);
 
