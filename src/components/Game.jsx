@@ -1,8 +1,6 @@
 import {useEffect, useState} from "react";
 import styled from "styled-components";
 import Box from "./Box";
-import putin1 from "../media/putin1.png";
-import putin2 from "../media/putin2.png";
 import Clock from "./Clock";
 import Score from "./Score";
 
@@ -12,11 +10,22 @@ const Grid = styled.div`
   //width: 100vw;
   grid-template-columns: repeat(${props => props.number}, 0fr);
 `;
-const Game = ({jwt}) => {
+const Game = ({jwt, level, target, targetHitted}) => {
 	// setup
-	const [target, setTarget] = useState(putin1);
-	const [targetHitted, setTargetHitted] = useState(putin2);
+	// const target, setTarget] = useState(putin1);
+	// const [targetHitted, setTargetHitted] = useState(putin2);
 	const [cells, setCells] = useState(3); // number of columns
+	switch (level) {
+		case "easy":
+			setCells(3)
+			break;
+			case "medium":
+				setCells(5)
+			break
+		case "hard":
+			setCells(7)
+			break;
+	}
 	const mole = {target, targetHitted};
 
 
