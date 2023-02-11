@@ -1,6 +1,6 @@
-const Header = () => {
+const Header = ({user, jwt}) => {
 	return (
-		<h1>header</h1>
+		<h1>{user} - {jwt}</h1>
 	)
 }
 

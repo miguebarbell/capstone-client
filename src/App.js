@@ -1,26 +1,22 @@
 import {useState} from "react";
 import {Route, Routes} from "react-router-dom";
-import Clock from "./components/Clock";
-import Game from "./components/Game";
 import Header from "./components/Header";
 import Home from "./components/Home";
+import Login from "./components/Login";
 import Play from "./components/Play";
 
 function App() {
-  const testUser = "Miguel"
-  const testJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-  const [user, setUser] = useState(testUser);
-  const [jwt, setJwt] = useState(testJwt);
+  const [user, setUser] = useState(null);
+  const [jwt, setJwt] = useState(null);
 
   return (
     <div>
-      <Header/>
+      <Header jwt={jwt} user={user}/>
       <Routes>
         <Route path="/" exact  element={<Home/>}/>
-        {/*<Route path="/login" element={<Login setJwt/>}/>*/}
+        <Route path="/login" element={jwt ? <Play jwt={jwt}/> : <Login setJwt={setJwt} setUser={setUser} endpoint={"login"}/>}/>
+        <Route path="/register" element={jwt ? <Play jwt={jwt}/> : <Login setJwt={setJwt} setUser={setUser} endpoint={"register"}/>}/>
         <Route path={"/play"} element={<Play jwt={jwt} />}/>
-
-
       </Routes>
     </div>
   );
