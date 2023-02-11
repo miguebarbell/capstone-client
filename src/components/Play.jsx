@@ -1,9 +1,9 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Game from "./Game";
 import Level from "./Level";
 import Moles from "./Moles";
 
-const Play = ({jwt}) => {
+const Play = ({jwt, user}) => {
 	const [level, setLevel] = useState(null);
 	const [mole, setMole] = useState(null);
 	const [moleHitted, setMoleHitted] = useState(null);
@@ -18,6 +18,7 @@ const Play = ({jwt}) => {
 			targetHitted={moleHitted}
 			cells={level}
 			jwt={jwt}
+			user={user}
 		/>;
 	}
 };

@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import Box from "./Box";
 import Clock from "./Clock";
@@ -9,14 +10,14 @@ const Container = styled.div`
   justify-content: center;
   align-content: center;
   flex-direction: column;
-	text-align: center;
+  text-align: center;
 `;
 const GridContainer = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
 
-`
+`;
 
 const Blocker = styled.div`
   display: ${(props) => props.active ? 'flex' : 'none'};
@@ -29,8 +30,8 @@ const Blocker = styled.div`
   font-weight: bolder;
   justify-content: center;
   align-content: center;
-	text-align: center;
-	flex-direction: column;
+  text-align: center;
+  flex-direction: column;
 `;
 const Grid = styled.div`
   position: relative;
@@ -38,8 +39,10 @@ const Grid = styled.div`
   //width: 100vw;
   grid-template-columns: repeat(${props => props.number}, 0fr);
 `;
-const Game = ({jwt, cells, target, targetHitted}) => {
+const Game = ({jwt, cells, target, targetHitted, user}) => {
 	const mole = {target, targetHitted};
+
+	const navigate = useNavigate();
 
 	// status
 	const scoreState = useState(0);
@@ -60,7 +63,29 @@ const Game = ({jwt, cells, target, targetHitted}) => {
 		}
 	}
 
+	const submitHandler = () => {
+		alert(jwt);
+	};
+
+	const seeHighScores = () => {
+		switch (cells) {
+			case 3:
+				alert('easy');
+				navigate("/highscores/easy");
+				break;
+			case 5:
+				alert('medium');
+				navigate("/highscores/easy");
+				break;
+			default:
+				alert('hard');
+				navigate("/highscores/easy");
+		}
+	};
+
+
 	useEffect(() => {
+		// TODO: put this in the clock component
 		const decrease = () => {
 			if (clockState) {
 				setTime((prevTime) => {
@@ -76,7 +101,7 @@ const Game = ({jwt, cells, target, targetHitted}) => {
 		return () => {
 			clearInterval(newInterval);
 		};
-	}, [clockState]);
+	}, [clockState, user]);
 
 	useEffect(() => {
 		setTimeout(activator, 100);
@@ -84,21 +109,25 @@ const Game = ({jwt, cells, target, targetHitted}) => {
 		return () => {
 			clearInterval(newInterval);
 		};
-	}, [time]);
-	return (<Container>
+	}, [time, user]);
+	return <Container>
 		<Score score={scoreState[0]}/>
 		<Clock time={time}/>
 		<GridContainer>
 			<Grid number={cells}>
-				<Blocker active={!clockState}>Final Score {scoreState[0]}</Blocker>
-				{gamestate.map((active, index) => (<Box key={index}
-				                                        active={active}
-				                                        mole={mole}
-				                                        score={scoreState}
-				/>))}
+				<Blocker onClick={seeHighScores} active={!clockState}>Final Score {scoreState[0]}{user != null ?
+				                                                                                  <button
+					                                                                                  onClick={() => submitHandler()}>Submit</button> :
+				                                                                                  "Click to see the high scores"
+				}</Blocker>
+				{gamestate.map((active, index) => <Box key={index}
+				                                       active={active}
+				                                       mole={mole}
+				                                       score={scoreState}
+				/>)}
 			</Grid>
 		</GridContainer>
-	</Container>);
+	</Container>;
 
 };
 export default Game;

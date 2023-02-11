@@ -1,6 +1,6 @@
 const Header = ({user, jwt}) => {
 	return (
-		<h1>{user} - {jwt}</h1>
+		<h1>{user ? user : "Guest"} {jwt ? jwt : "- no jwt"}</h1>
 	)
 }
 
