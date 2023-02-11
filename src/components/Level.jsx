@@ -2,13 +2,14 @@ import styled from "styled-components";
 const ButtonContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 `
 
 const Button = styled.button`
 	color: blue;
 	background: black;
 	margin: 5vh;
-	width: 30vw;
+	width: 20vw;
 `
 const Level = ({setLevel}) => {
 
