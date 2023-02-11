@@ -7,34 +7,18 @@ const Play = ({jwt}) => {
 	const [level, setLevel] = useState(null);
 	const [mole, setMole] = useState(null);
 	const [moleHitted, setMoleHitted] = useState(null);
-	// useEffect(() => {
-	//
-	// }, [level, mole]);
-
-	if (level) {
+	if (!level) {
+		return <Level setLevel={setLevel}/>;
+	} else if (level && !mole) {
 		return <Moles setMole={setMole}
-		       setMoleHitted={setMoleHitted}/>;
-	} else if (!level) {
-		return <Level setLevel={setLevel}/>
-	} else {
-		return <Game target={mole}
-		             targetHitted={moleHitted}
-		             level={level}
-		             jwt={jwt}/>;
+		              setMoleHitted={setMoleHitted}/>;
+	} else if (level && mole && moleHitted) {
+		return <Game
+			target={mole}
+			targetHitted={moleHitted}
+			cells={level}
+			jwt={jwt}
+		/>;
 	}
-
-	// return (
-	// 	<div>
-
-			{/*{!level && <Level setLevel={setLevel}/>}*/}
-			{/*{level && <Moles setMole={setMole}*/}
-			{/*                 setMoleHitted={setMoleHitted}/>}*/}
-			{/*{level && mole && <Game jwt={jwt}*/}
-			{/*                        level={level}*/}
-			{/*                        target={mole}*/}
-			{/*                        targetHitted={moleHitted}*/}
-			{/*/>}*/}
-		// </div>
-	// );
 };
 export default Play;

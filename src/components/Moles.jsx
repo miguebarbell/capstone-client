@@ -1,17 +1,21 @@
 import styled from "styled-components";
-import putin1 from "../media/putin1.png";
-import putin2 from "../media/putin2.png";
+import putin from "../media/putin1.png";
+import putinHitted from "../media/putin2.png";
 
 const ImageContainer = styled.img`
 	width: 20vh;
 	height: 20vh;
 `
-const Moles = (props) => {
+const Moles = ({setMoleHitted, setMole}) => {
+	const setPutin = () => {
+		setMole(putin)
+		setMoleHitted(putinHitted)
+	}
 	return (
 		<div>
-			<div>
-				<ImageContainer src={putin1} onClick={props.setMole(putin1)}/>
-				<ImageContainer src={putin2} onClick={props.setMoleHitted(putin2)}/>
+			<div onClick={() => setPutin()}>
+				<ImageContainer src={putin} />
+				<ImageContainer src={putinHitted} />
 			</div>
 
 		</div>

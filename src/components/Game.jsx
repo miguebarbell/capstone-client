@@ -10,24 +10,8 @@ const Grid = styled.div`
   //width: 100vw;
   grid-template-columns: repeat(${props => props.number}, 0fr);
 `;
-const Game = ({jwt, level, target, targetHitted}) => {
-	// setup
-	// const target, setTarget] = useState(putin1);
-	// const [targetHitted, setTargetHitted] = useState(putin2);
-	const [cells, setCells] = useState(3); // number of columns
-	switch (level) {
-		case "easy":
-			setCells(3)
-			break;
-			case "medium":
-				setCells(5)
-			break
-		case "hard":
-			setCells(7)
-			break;
-	}
+const Game = ({jwt, cells, target, targetHitted}) => {
 	const mole = {target, targetHitted};
-
 
 	// status
 	const scoreState = useState(0);
@@ -54,7 +38,7 @@ const Game = ({jwt, level, target, targetHitted}) => {
 				if (prevTime > 0 && clockState) {
 					return prevTime - 1;
 				} else {
-					setClockState(false)
+					setClockState(false);
 					return 0;
 				}
 			});

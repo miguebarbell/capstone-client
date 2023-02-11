@@ -9,20 +9,18 @@ const Button = styled.button`
 	background: black;
 	margin: 5vh;
 	width: 30vw;
-	
-
-
 `
 const Level = ({setLevel}) => {
+
 	return (
 		<ButtonContainer>
-			<Button onClick={() => setLevel("easy")}>
+			<Button onClick={() => setLevel(3)}>
 				Easy
 			</Button>
-			<Button onClick={() => setLevel("medium")}>
+			<Button onClick={() => setLevel(5)}>
 				Medium
 			</Button>
-			<Button onClick={() => setLevel("hard")}>
+			<Button onClick={() => setLevel(7)}>
 				Hard
 			</Button>
 
