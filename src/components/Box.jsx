@@ -1,6 +1,7 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import styled from "styled-components";
 import cover from "../media/cover.jpeg"
+import hammer from "../media/hammer.png";
 
 
 const Container = styled.div`
@@ -13,9 +14,10 @@ const Container = styled.div`
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	cursor: url(${hammer}), auto;
 	
 `;
-const Box = ({active, mole, score, id}) => {
+const Box = ({active, mole, score}) => {
 	const [hit, setHit] = useState(false);
 	const scored = () => {
 		if (active) {
