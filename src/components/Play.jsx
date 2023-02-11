@@ -18,7 +18,7 @@ const Play = ({jwt, user}) => {
 			targetHitted={moleHitted}
 			cells={level}
 			jwt={jwt}
-			user={user}
+			username={user}
 		/>;
 	}
 };

@@ -5,7 +5,8 @@ export const AUTHENTICATION_REQUEST = async (endpoint, username, password) => {
 
 	return await fetch(BASE_URL + endpoint, {
 		method : "POST", headers: {
-			'Accept': 'application/json', 'Content-Type': 'application/json'
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
 		}, body: JSON.stringify({
 			                        username, password
 		                        })
@@ -17,9 +18,12 @@ export const PUBLIC_SCORES = async (difficulty) => {
 };
 
 export const USER_SCORES = async (difficulty, username, jwt) => {
-	return await fetch(BASE_URL + `${username}/${difficulty}`, {
+
+	return await fetch(BASE_URL + `scores/${username}/${difficulty}`, {
 		method: "GET", headers: {
-			'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': `Bearer ${jwt}`
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${jwt}`
 		}
 	});
 };

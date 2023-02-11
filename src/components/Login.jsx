@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import {AUTHENTICATION_REQUEST} from "../helpers/requests";
 
@@ -17,6 +18,8 @@ const Form = styled.form`
 const Input = styled.input``;
 const Button = styled.button``;
 const Login = ({setJwt, setUser, endpoint}) => {
+
+	const navigate = useNavigate();
 	const [username, setUsername] = useState(null);
 	const [password, setPassword] = useState(null);
 	const handleSubmit = async (e) => {
@@ -27,6 +30,10 @@ const Login = ({setJwt, setUser, endpoint}) => {
 				setJwt(res.jwt)
 				setUser(username)
 			})
+		navigate("/play")
+
+
+		// setUser(username)
 	};
 
 	return (
@@ -36,7 +43,10 @@ const Login = ({setJwt, setUser, endpoint}) => {
 				<Input type="text"
 				       id={"name"}
 				       placeholder="John"
-				       onChange={(e) => setUsername(e.target.value)}
+				       onChange={(e) => {
+								 setUsername(e.target.value)
+					       // setUser(e.target.value)
+				       }}
 				/>
 
 				<Label htmlFor={"password"}>Password</Label>

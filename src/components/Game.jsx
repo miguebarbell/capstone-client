@@ -33,14 +33,29 @@ const Blocker = styled.div`
   text-align: center;
   flex-direction: column;
 `;
+
+const SubmitButton = styled.button`
+	z-index: 10;
+	cursor: pointer;
+`
 const Grid = styled.div`
   position: relative;
   display: grid;
   //width: 100vw;
   grid-template-columns: repeat(${props => props.number}, 0fr);
 `;
-const Game = ({jwt, cells, target, targetHitted, user}) => {
+const Game = ({jwt, cells, target, targetHitted, username}) => {
 	const mole = {target, targetHitted};
+	const difficulty = () => {
+		switch (cells) {
+			case 3:
+				return "easy"
+			case 5:
+				return "medium"
+			default:
+				return "hard"
+		}
+	}
 
 	const navigate = useNavigate();
 
@@ -64,25 +79,12 @@ const Game = ({jwt, cells, target, targetHitted, user}) => {
 	}
 
 	const submitHandler = () => {
-		alert(jwt);
+		navigate(`/scores/${username}/${difficulty()}`)
 	};
 
 	const seeHighScores = () => {
-		switch (cells) {
-			case 3:
-				alert('easy');
-				navigate("/highscores/easy");
-				break;
-			case 5:
-				alert('medium');
-				navigate("/highscores/easy");
-				break;
-			default:
-				alert('hard');
-				navigate("/highscores/easy");
-		}
+		navigate(`/highscores/${difficulty()}`)
 	};
-
 
 	useEffect(() => {
 		// TODO: put this in the clock component
@@ -101,7 +103,7 @@ const Game = ({jwt, cells, target, targetHitted, user}) => {
 		return () => {
 			clearInterval(newInterval);
 		};
-	}, [clockState, user]);
+	}, [clockState, username]);
 
 	useEffect(() => {
 		setTimeout(activator, 100);
@@ -109,16 +111,16 @@ const Game = ({jwt, cells, target, targetHitted, user}) => {
 		return () => {
 			clearInterval(newInterval);
 		};
-	}, [time, user]);
+	}, [time, username]);
 	return <Container>
 		<Score score={scoreState[0]}/>
 		<Clock time={time}/>
 		<GridContainer>
 			<Grid number={cells}>
-				<Blocker onClick={seeHighScores} active={!clockState}>Final Score {scoreState[0]}{user != null ?
-				                                                                                  <button
-					                                                                                  onClick={() => submitHandler()}>Submit</button> :
-				                                                                                  "Click to see the high scores"
+				<Blocker active={!clockState}>Final Score {scoreState[0]}{username || jwt ?
+				                                                                                  <SubmitButton
+					                                                                                  onClick={submitHandler}>Submit</SubmitButton> :
+				                                                                                  <SubmitButton onClick={seeHighScores}>High Scores</SubmitButton>
 				}</Blocker>
 				{gamestate.map((active, index) => <Box key={index}
 				                                       active={active}
