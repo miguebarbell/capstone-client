@@ -1,6 +1,22 @@
-const Header = ({user, jwt}) => {
+import styled from "styled-components";
+import {HEADER_HEIGHT} from "./Home";
+
+const HeaderContainer = styled.div`
+	height: ${({headerHeight}) => headerHeight};
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  font-size: 24px;
+`
+const Header = ({user}) => {
 	return (
-		<h1>{user} - {jwt}</h1>
+		<HeaderContainer headerHeight={HEADER_HEIGHT}>
+			{user ?
+			 user :
+			 "Guest"
+			}
+		</HeaderContainer>
 	)
 }
 

@@ -8,10 +8,14 @@ import ryan from "../media/Ryan-R.jpg";
 import ryanHit from "../media/Ryan-U.jpg";
 import will from "../media/willSmith-R.jpg"
 import willHit from "../media/willSmith-u.jpg"
+import {DefaultContainer} from "./Home";
+
+var MOLE_SIZE = 10;
+
 const MoleContainer = styled.div`
 	position: relative;
-  height: 20vh;
-  width: 40vh;
+  height: ${MOLE_SIZE}vh;
+  width: ${MOLE_SIZE * 2}vh;
 	cursor: pointer;
 `;
 const PlayButton = styled.div`
@@ -29,9 +33,12 @@ const PlayButton = styled.div`
   background: rgba(0,0,0,0.5);
 `;
 const ImageContainer = styled.img`
-  width: 20vh;
-  height: 20vh;
+  width: ${MOLE_SIZE}vh;
+  height: ${MOLE_SIZE}vh;
 `;
+const MolesContainer = styled(DefaultContainer)`
+	
+`
 const Moles = ({setMoleHitted, setMole}) => {
 	const moles = [[putin, putinHitted], [trump, trumpHitted], [ryan, ryanHit], [will, willHit]];
 	const [playVisibility, setPlayVisibility] = useState(null);
@@ -39,13 +46,14 @@ const Moles = ({setMoleHitted, setMole}) => {
 		setMole(moles[index][0]);
 		setMoleHitted(moles[index][1]);
 	};
-	return (<div>
+	return (<MolesContainer>
+		<h4>Choose your Mole</h4>
 		{moles.map((moleSet, index) =>
 			           <MoleContainer key={index} onClick={() =>  setPlayVisibility(index)}>
 				           <PlayButton onClick={() => setTheMole(index)} active={index === playVisibility}>Play</PlayButton>
 				           <ImageContainer src={moleSet[0]}/>
 				           <ImageContainer src={moleSet[1]}/>
 			           </MoleContainer>)}
-	</div>);
+	</MolesContainer>);
 };
 export default Moles;
