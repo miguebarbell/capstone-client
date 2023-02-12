@@ -2,8 +2,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import {AUTHENTICATION_REQUEST} from "../helpers/requests";
-import {HEADER_HEIGHT} from "./Header";
-import {DefaultContainer} from "./Home";
+import {DefaultContainer, HEADER_HEIGHT} from "./Home";
 import {Button} from "./Level";
 
 const Form = styled.form`

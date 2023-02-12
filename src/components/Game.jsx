@@ -29,10 +29,13 @@ const Blocker = styled.div`
   text-align: center;
   flex-direction: column;
 	button {
-		width: 100px;
+		//width: 100px;
 
     font-family: Atraries;
 		font-size: 15px;
+		span {
+			height: initial;
+		}
 	}
 `;
 

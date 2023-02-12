@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import {HEADER_HEIGHT} from "./Home";
 
-export const HEADER_HEIGHT =	9;
 const HeaderContainer = styled.div`
-	height: ${({height}) => height};
+	height: ${({headerHeight}) => headerHeight};
 	color: white;
 	display: flex;
 	justify-content: center;
@@ -11,8 +11,12 @@ const HeaderContainer = styled.div`
 `
 const Header = ({user}) => {
 	return (
-		<HeaderContainer height={HEADER_HEIGHT}>{user ?
-		                                         user : "Guest"}</HeaderContainer>
+		<HeaderContainer headerHeight={HEADER_HEIGHT}>
+			{user ?
+			 user :
+			 "Guest"
+			}
+		</HeaderContainer>
 	)
 }
 

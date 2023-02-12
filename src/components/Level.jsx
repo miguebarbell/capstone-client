@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import {HEADER_HEIGHT} from "./Header";
-const ButtonContainer = styled.div`
-	position: absolute;
-	top: ${HEADER_HEIGHT}vh;
-	left: 0;
-	width: 100vw;
+import {DefaultContainer} from "./Home";
+const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-  margin: ${HEADER_HEIGHT}vh 0vh;
-	
+  button {
+	  width: 200px;
+    span {
+      height: initial;
+    }
+  }
 `
 
 export const Button = styled.button`
@@ -92,19 +93,21 @@ text-align: center;
 const Level = ({setLevel}) => {
 
 	return (
-		<ButtonContainer headerHeight={HEADER_HEIGHT}>
-			<H2>Choose a Difficulty?</H2>
-			<Button onClick={() => setLevel(3)}>
-			<span>Easy</span>
-			</Button>
-		
-			<Button onClick={() => setLevel(5)}>
-				<span>Medium</span>
-			</Button>
-			<Button onClick={() => setLevel(7)}>
-				<span>Hard</span>
-			</Button>
-		</ButtonContainer>
+		<DefaultContainer>
+			<Wrapper>
+				<H2>Choose a Difficulty?</H2>
+				<Button onClick={() => setLevel(3)}>
+					<span>Easy</span>
+				</Button>
+
+				<Button onClick={() => setLevel(5)}>
+					<span>Medium</span>
+				</Button>
+				<Button onClick={() => setLevel(7)}>
+					<span>Hard</span>
+				</Button>
+			</Wrapper>
+		</DefaultContainer>
 	)
 
 }

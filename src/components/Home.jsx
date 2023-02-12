@@ -1,9 +1,8 @@
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
-import {HEADER_HEIGHT} from "./Header";
 import {Button} from "./Level";
-
-export const DefaultContainer = styled.div`
+export var HEADER_HEIGHT =	9;
+export var DefaultContainer = styled.div`
   color: white;
   position: absolute;
   height: ${HEADER_HEIGHT + 100}vh;
