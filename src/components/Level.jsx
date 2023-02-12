@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import myfont from "../font/PressStart2P.ttf";
 var ButtonContainer = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -8,7 +8,10 @@ var ButtonContainer = styled.div`
 `
 
 var Button = styled.button`
-  
+  @font-face {
+        font-family: Atraries;
+        src: url(../font/PressStart2P.ttf);
+    }
   align-items: center;
   background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
   border: 0;
@@ -17,14 +20,14 @@ var Button = styled.button`
   box-sizing: border-box;
   color: #FFFFFF;
   display: flex;
-  font-family: Phantomsans, sans-serif;
+  font-family: Atraries;
   font-size: 20px;
   justify-content: center;
   line-height: 1em;
   max-width: 100%;
   min-width: 140px;
   padding: 3px;
-  margin: 7vh 0vh;
+  margin: 4vh 0vh;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
@@ -32,46 +35,51 @@ var Button = styled.button`
   white-space: nowrap;
   cursor: pointer;
 
-&:active {
-	box-shadow: rgba(0, 0, 0, .1) 0 3px 6px 0;
-	rgba(0, 0, 0, .1) 0 0 10px 0;
-	rgba(0, 0, 0, .1) 0 1px 4px -1px;  
-	transform: translateY(2px);  
-	transition-duration: .35s;
+span {background-color: rgb(5, 6, 45);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+  font-family: url(${myfont});
 }
+&:hover span {
+  background: none;
+}
+
 
 
 &:hover {
-  background-color: #1366d6;
+  background-color: ;
   box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, 
   rgba(0, 0, 0, 1) 0 1px 4px; 
-  opacity: 1; 
   transform: translateY(0);
+  transition: all;
   transition-duration: .35s;
 }
-&:hover,
-&:after{
-	opacity: .5;
-}
-&:active,
-&:after {  
-	opacity: 1;
-}
+
 
 @media (min-width: 1440px) {
     font-size: 24px;
     min-width: 196px;
-	margin 6vh 0vh;
+	margin 7vh 0vh;
 }
-
 `
 var H2 = styled.h2`
 margin: 3vh 0vh;
+text-align: center;
 @media (min-width: 1440px) {
     font-size: 24px;
     min-width: 196px;
 	margin: 0vh 0vh;
 }	
+@media (max-width: 375px){
+	text-align: center;
+	margin: 0vh
+}
+@max(max-width: 425px){
+	text-align:center;
+}
 `
 
 
@@ -81,14 +89,14 @@ const Level = ({setLevel}) => {
 		<ButtonContainer>
 			<H2>Choose a Difficulty?</H2>
 			<Button onClick={() => setLevel(3)}>
-			Easy
+			<span>Easy</span>
 			</Button>
 		
 			<Button onClick={() => setLevel(5)}>
-				Medium
+				<span>Medium</span>
 			</Button>
 			<Button onClick={() => setLevel(7)}>
-				Hard
+				<span>Hard</span>
 			</Button>
 		</ButtonContainer>
 	)
