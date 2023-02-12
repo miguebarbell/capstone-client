@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {PUBLIC_SCORES} from "../helpers/requests";
+import {DefaultContainer} from "./Home";
 
 const HighScores = () => {
 	const location = window.location.href.split("/");
@@ -13,7 +14,7 @@ const HighScores = () => {
 	}, []);
 
 	return (
-		<div>
+		<DefaultContainer>
 		<h1>
 			Scores for {difficulty}
 		</h1>
@@ -22,7 +23,7 @@ const HighScores = () => {
 			            </div>
 
 				)}
-			</div>
+			</DefaultContainer>
 	);
 
 };

@@ -4,20 +4,14 @@ import styled from "styled-components";
 import {SUBMIT_SCORES} from "../helpers/requests";
 import Box from "./Box";
 import Clock from "./Clock";
+import {DefaultContainer} from "./Home";
 import Score from "./Score";
+import {Button} from "./Level";
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-  text-align: center;
-`;
 const GridContainer = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
-
 `;
 
 const Blocker = styled.div`
@@ -31,14 +25,18 @@ const Blocker = styled.div`
   font-weight: bolder;
   justify-content: center;
   align-content: center;
+	align-items: center;
   text-align: center;
   flex-direction: column;
+	button {
+		width: 100px;
+
+    font-family: Atraries;
+		font-size: 15px;
+	}
 `;
 
-const SubmitButton = styled.button`
-  z-index: 10;
-  cursor: pointer;
-`;
+
 const Grid = styled.div`
   position: relative;
   display: grid;
@@ -126,16 +124,16 @@ const Game = ({jwt, cells, target, targetHitted, username}) => {
 			clearInterval(newInterval);
 		};
 	}, [time, username]);
-	return <Container>
+	return <DefaultContainer>
 		<Score score={scoreState[0]}/>
 		<Clock time={time}/>
 		<GridContainer>
 			<Grid number={cells}>
 				<Blocker active={!clockState}>Final Score {scoreState[0]}{username || jwt ?
-				                                                          <SubmitButton
-					                                                          onClick={submitHandler}>Submit</SubmitButton> :
-				                                                          <SubmitButton
-					                                                          onClick={seeHighScores}>High Scores</SubmitButton>
+				                                                          <Button
+					                                                          onClick={submitHandler}>Submit</Button> :
+				                                                          <Button
+					                                                          onClick={seeHighScores}>High Scores</Button>
 				}</Blocker>
 				{gamestate.map((active, index) => <Box key={index}
 				                                       active={active}
@@ -144,7 +142,7 @@ const Game = ({jwt, cells, target, targetHitted, username}) => {
 				/>)}
 			</Grid>
 		</GridContainer>
-	</Container>;
+	</DefaultContainer>;
 
 };
 export default Game;

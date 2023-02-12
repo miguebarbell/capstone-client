@@ -15,7 +15,7 @@ function App() {
 
 	return (
 		<div>
-			<Header jwt={jwt} user={username}/>
+			<Header user={username}/>
 			<Routes>
 				<Route path={"/"} exact element={<Home/>}/>
 				<Route path={"/login"}

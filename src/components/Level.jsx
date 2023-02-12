@@ -1,12 +1,18 @@
 import styled from "styled-components";
-var ButtonContainer = styled.div`
+import {HEADER_HEIGHT} from "./Header";
+const ButtonContainer = styled.div`
+	position: absolute;
+	top: ${HEADER_HEIGHT}vh;
+	left: 0;
+	width: 100vw;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 9vh 0vh;
+  margin: ${HEADER_HEIGHT}vh 0vh;
+	
 `
 
-var Button = styled.button`
+export const Button = styled.button`
   @font-face {
         font-family: Atraries;
         src: url(../font/PressStart2P.ttf);
@@ -33,6 +39,7 @@ var Button = styled.button`
   white-space: nowrap;
   cursor: pointer;
 
+
 span {background-color: rgb(5, 6, 45);
   padding: 4px 24px;
   border-radius: 6px;
@@ -48,7 +55,7 @@ span {background-color: rgb(5, 6, 45);
 
 
 &:hover {
-  background-color: ;
+  //background-color: ;
   box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, 
   rgba(0, 0, 0, 1) 0 1px 4px; 
   transform: translateY(0);
@@ -60,12 +67,13 @@ span {background-color: rgb(5, 6, 45);
 @media (min-width: 1440px) {
     font-size: 24px;
     min-width: 196px;
-	margin 7vh 0vh;
+	margin: 7vh 0vh;
 }
 `
 var H2 = styled.h2`
 margin: 3vh 0vh;
 text-align: center;
+	color: white;
 @media (min-width: 1440px) {
     font-size: 24px;
     min-width: 196px;
@@ -75,16 +83,16 @@ text-align: center;
 	text-align: center;
 	margin: 0vh
 }
-@max(max-width: 425px){
-	text-align:center;
-}
+//@max(max-width: 425px){
+//	text-align:center;
+//}
 `
 
 
 const Level = ({setLevel}) => {
 
 	return (
-		<ButtonContainer>
+		<ButtonContainer headerHeight={HEADER_HEIGHT}>
 			<H2>Choose a Difficulty?</H2>
 			<Button onClick={() => setLevel(3)}>
 			<span>Easy</span>
