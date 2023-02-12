@@ -5,11 +5,13 @@ import HighScores from "./components/HighScores";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Play from "./components/Play";
+
 import Scores from "./components/Scores";
 
 function App() {
 	const [username, setUsername] = useState(null);
 	const [jwt, setJwt] = useState(null);
+
 
 	return (
 		<div>
@@ -26,6 +28,7 @@ function App() {
 			</Routes>
 		</div>
 	);
+
 }
 
 export default App;
