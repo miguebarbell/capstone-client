@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import myfont from "../font/PressStart2P.ttf";
 var ButtonContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 10vh 0vh;
+	margin: 9vh 0vh;
 `
 
 var Button = styled.button`
@@ -20,14 +19,13 @@ var Button = styled.button`
   box-sizing: border-box;
   color: #FFFFFF;
   display: flex;
-  font-family: Atraries;
   font-size: 20px;
   justify-content: center;
   line-height: 1em;
   max-width: 100%;
   min-width: 140px;
   padding: 3px;
-  margin: 4vh 0vh;
+  margin: 10vh 0vh;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
@@ -36,12 +34,12 @@ var Button = styled.button`
   cursor: pointer;
 
 span {background-color: rgb(5, 6, 45);
-  padding: 16px 24px;
+  padding: 4px 24px;
   border-radius: 6px;
   width: 100%;
   height: 100%;
   transition: 300ms;
-  font-family: url(${myfont});
+  font-family: Atraries;
 }
 &:hover span {
   background: none;
