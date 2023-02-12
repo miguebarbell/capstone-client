@@ -1,3 +1,4 @@
+
 const BASE_URL = "http://localhost:8080/";
 
 export const AUTHENTICATION_REQUEST = async (endpoint, username, password) => {
@@ -27,3 +28,16 @@ export const USER_SCORES = async (difficulty, username, jwt) => {
 		}
 	});
 };
+
+export const SUBMIT_SCORES = async (scoreObject, jwt) => {
+	return await fetch(BASE_URL + `score`, {
+		method: "POST",
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${jwt}`
+		},
+		body: JSON.stringify(scoreObject)
+	})
+
+}

@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
+import {SUBMIT_SCORES} from "../helpers/requests";
 import Box from "./Box";
 import Clock from "./Clock";
 import Score from "./Score";
@@ -35,9 +36,9 @@ const Blocker = styled.div`
 `;
 
 const SubmitButton = styled.button`
-	z-index: 10;
-	cursor: pointer;
-`
+  z-index: 10;
+  cursor: pointer;
+`;
 const Grid = styled.div`
   position: relative;
   display: grid;
@@ -49,13 +50,13 @@ const Game = ({jwt, cells, target, targetHitted, username}) => {
 	const difficulty = () => {
 		switch (cells) {
 			case 3:
-				return "easy"
+				return "easy";
 			case 5:
-				return "medium"
+				return "medium";
 			default:
-				return "hard"
+				return "hard";
 		}
-	}
+	};
 
 	const navigate = useNavigate();
 
@@ -78,12 +79,25 @@ const Game = ({jwt, cells, target, targetHitted, username}) => {
 		}
 	}
 
-	const submitHandler = () => {
-		navigate(`/scores/${username}/${difficulty()}`)
+	const submitHandler = async () => {
+		// alert('submit');
+		// console.log(jwt);
+		// console.log(username);
+		// console.log(difficulty());
+		// console.log(scoreState[0]);
+		const scoreToSubmit = {
+			username,
+			score: scoreState[0],
+			difficulty: difficulty()}
+		await SUBMIT_SCORES(scoreToSubmit, jwt)
+			// .then(res => console.log(res.status))
+			.then(res => res.json())
+			.then(res => console.log(res))
+			.then(navigate(`/scores/${username}/${difficulty()}`))
 	};
 
 	const seeHighScores = () => {
-		navigate(`/highscores/${difficulty()}`)
+		navigate(`/highscores/${difficulty()}`);
 	};
 
 	useEffect(() => {
@@ -118,9 +132,10 @@ const Game = ({jwt, cells, target, targetHitted, username}) => {
 		<GridContainer>
 			<Grid number={cells}>
 				<Blocker active={!clockState}>Final Score {scoreState[0]}{username || jwt ?
-				                                                                                  <SubmitButton
-					                                                                                  onClick={submitHandler}>Submit</SubmitButton> :
-				                                                                                  <SubmitButton onClick={seeHighScores}>High Scores</SubmitButton>
+				                                                          <SubmitButton
+					                                                          onClick={submitHandler}>Submit</SubmitButton> :
+				                                                          <SubmitButton
+					                                                          onClick={seeHighScores}>High Scores</SubmitButton>
 				}</Blocker>
 				{gamestate.map((active, index) => <Box key={index}
 				                                       active={active}
