@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
+import {SUBMIT_SCORES} from "../helpers/requests";
 import Box from "./Box";
 import Clock from "./Clock";
 import Score from "./Score";
@@ -9,14 +11,14 @@ const Container = styled.div`
   justify-content: center;
   align-content: center;
   flex-direction: column;
-	text-align: center;
+  text-align: center;
 `;
 const GridContainer = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
 
-`
+`;
 
 const Blocker = styled.div`
   display: ${(props) => props.active ? 'flex' : 'none'};
@@ -29,8 +31,13 @@ const Blocker = styled.div`
   font-weight: bolder;
   justify-content: center;
   align-content: center;
-	text-align: center;
-	flex-direction: column;
+  text-align: center;
+  flex-direction: column;
+`;
+
+const SubmitButton = styled.button`
+  z-index: 10;
+  cursor: pointer;
 `;
 const Grid = styled.div`
   position: relative;
@@ -38,8 +45,20 @@ const Grid = styled.div`
   //width: 100vw;
   grid-template-columns: repeat(${props => props.number}, 0fr);
 `;
-const Game = ({jwt, cells, target, targetHitted}) => {
+const Game = ({jwt, cells, target, targetHitted, username}) => {
 	const mole = {target, targetHitted};
+	const difficulty = () => {
+		switch (cells) {
+			case 3:
+				return "easy";
+			case 5:
+				return "medium";
+			default:
+				return "hard";
+		}
+	};
+
+	const navigate = useNavigate();
 
 	// status
 	const scoreState = useState(0);
@@ -60,7 +79,29 @@ const Game = ({jwt, cells, target, targetHitted}) => {
 		}
 	}
 
+	const submitHandler = async () => {
+		// alert('submit');
+		// console.log(jwt);
+		// console.log(username);
+		// console.log(difficulty());
+		// console.log(scoreState[0]);
+		const scoreToSubmit = {
+			username,
+			score: scoreState[0],
+			difficulty: difficulty()}
+		await SUBMIT_SCORES(scoreToSubmit, jwt)
+			// .then(res => console.log(res.status))
+			.then(res => res.json())
+			.then(res => console.log(res))
+			.then(navigate(`/scores/${username}/${difficulty()}`))
+	};
+
+	const seeHighScores = () => {
+		navigate(`/highscores/${difficulty()}`);
+	};
+
 	useEffect(() => {
+		// TODO: put this in the clock component
 		const decrease = () => {
 			if (clockState) {
 				setTime((prevTime) => {
@@ -76,7 +117,7 @@ const Game = ({jwt, cells, target, targetHitted}) => {
 		return () => {
 			clearInterval(newInterval);
 		};
-	}, [clockState]);
+	}, [clockState, username]);
 
 	useEffect(() => {
 		setTimeout(activator, 100);
@@ -84,21 +125,26 @@ const Game = ({jwt, cells, target, targetHitted}) => {
 		return () => {
 			clearInterval(newInterval);
 		};
-	}, [time]);
-	return (<Container>
+	}, [time, username]);
+	return <Container>
 		<Score score={scoreState[0]}/>
 		<Clock time={time}/>
 		<GridContainer>
 			<Grid number={cells}>
-				<Blocker active={!clockState}>Final Score {scoreState[0]}</Blocker>
-				{gamestate.map((active, index) => (<Box key={index}
-				                                        active={active}
-				                                        mole={mole}
-				                                        score={scoreState}
-				/>))}
+				<Blocker active={!clockState}>Final Score {scoreState[0]}{username || jwt ?
+				                                                          <SubmitButton
+					                                                          onClick={submitHandler}>Submit</SubmitButton> :
+				                                                          <SubmitButton
+					                                                          onClick={seeHighScores}>High Scores</SubmitButton>
+				}</Blocker>
+				{gamestate.map((active, index) => <Box key={index}
+				                                       active={active}
+				                                       mole={mole}
+				                                       score={scoreState}
+				/>)}
 			</Grid>
 		</GridContainer>
-	</Container>);
+	</Container>;
 
 };
 export default Game;
