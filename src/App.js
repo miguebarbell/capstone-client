@@ -17,7 +17,7 @@ function App() {
 		<div>
 			<Header user={username}/>
 			<Routes>
-				<Route path={"/"} exact element={<Home/>}/>
+				<Route path={"/"} exact element={<Home jwt={jwt}/>}/>
 				<Route path={"/login"}
 				       element={jwt ? <Play jwt={jwt}/> : <Login setJwt={setJwt} setUser={setUsername} endpoint={"login"}/>}/>
 				<Route path={"/register"} element={jwt ? <Play jwt={jwt}/> :

@@ -28,8 +28,8 @@ const Login = ({setJwt, setUser, endpoint}) => {
 	const [password, setPassword] = useState(null);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setPassword(CryptoJS.AES.encrypt(password, BASE_URL).toString());
-		await AUTHENTICATION_REQUEST(endpoint, username, password)
+		const hashedPassword = CryptoJS.HmacSHA256(password, "secretkey").toString();
+		await AUTHENTICATION_REQUEST(endpoint, username, hashedPassword)
 			.then(res => res.json())
 			.then(res => {
 				setJwt(res.jwt);
@@ -64,7 +64,6 @@ const Login = ({setJwt, setUser, endpoint}) => {
 				<Button onClick={(e) => handleSubmit(e)}><span>{endpoint}</span></Button>
 			</Form>
 		</DefaultContainer>
-		// setJwt(the thing that you grabeb in the response)
 	);
 };
 
