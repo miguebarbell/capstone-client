@@ -9,13 +9,13 @@ import leoHit from "../media/leo-u.jpg";
 import ryan from "../media/Ryan-R.jpg"
 import ryanHit from "../media/Ryan-U.jpg";
 import {DefaultContainer} from "./Home";
-
 var MOLE_SIZE = 10;
 const MoleContainer = styled.div`
 	position: relative;
   height: ${MOLE_SIZE}vh;
   width: ${MOLE_SIZE * 2}vh;
 	cursor: pointer;
+	margin-bottom: 2vh;
 `;
 const PlayButton = styled.div`
   position: absolute;
@@ -31,12 +31,32 @@ const PlayButton = styled.div`
 	font-size: large;
   background: rgba(0,0,0,0.5);
 `;
+
+const ImageCon = styled.div`
+overflow-y: auto;
+margin: 3vh;
+height: 30%;
+border: solid;
+border-radius: 10px;
+::-webkit-scrollbar{
+ background-color: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+ border-radius: 10px;
+  border: 1px solid #000;
+}
+::-webkit-scrollbar-thumb{
+	background-color: black;
+	border-radius: 10px;
+}
+`;
+const H4 = styled.div`
+	margin-bottom: 7vh;
+`
 const ImageContainer = styled.img`
   width: ${MOLE_SIZE}vh;
   height: ${MOLE_SIZE}vh;
 `;
 const MolesContainer = styled(DefaultContainer)`
-	
+
 `
 const Moles = ({setMoleHitted, setMole}) => {
 	const moles = [[putin, putinHitted], [trump, trumpHitted], [ryan, ryanHit], [leo, leoHit]];
@@ -46,13 +66,19 @@ const Moles = ({setMoleHitted, setMole}) => {
 		setMoleHitted(moles[index][1]);
 	};
 	return (<MolesContainer>
-		<h4>Choose your Mole</h4>
+		<H4>Choose your Mole</H4>
+		
+		<ImageCon>
 		{moles.map((moleSet, index) =>
+					   
 			           <MoleContainer key={index} onClick={() =>  setPlayVisibility(index)}>
+						
 				           <PlayButton onClick={() => setTheMole(index)} active={index === playVisibility}>Play</PlayButton>
 				           <ImageContainer src={moleSet[0]}/>
 				           <ImageContainer src={moleSet[1]}/>
-			           </MoleContainer>)}
+			           </MoleContainer>
+					   
+									)}</ImageCon>
 	</MolesContainer>);
 };
 export default Moles;
