@@ -15,7 +15,7 @@ const MoleContainer = styled.div`
   height: ${MOLE_SIZE}vh;
   width: ${MOLE_SIZE * 2}vh;
 	cursor: pointer;
-	margin-bottom: 2vh;
+	margin-bottom: 2px;
 `;
 const PlayButton = styled.div`
   position: absolute;
@@ -42,6 +42,7 @@ border-radius: 10px;
  background-color: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
  border-radius: 10px;
   border: 1px solid #000;
+  width: 10px;
 }
 ::-webkit-scrollbar-thumb{
 	background-color: black;
