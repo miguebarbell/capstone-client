@@ -4,10 +4,10 @@ import putin from "../media/putin1.png";
 import putinHitted from "../media/putin2.png";
 import trump from "../media/trump1.png";
 import trumpHitted from "../media/trump2.png";
-import ryan from "../media/Ryan-R.jpg";
-import ryanHit from "../media/Ryan-U.jpg";
-import will from "../media/willSmith-R.jpg"
-import willHit from "../media/willSmith-u.jpg"
+import leo from "../media/leo.jpg";
+import leoHit from "../media/leo-u.jpg";
+import ryan from "../media/Ryan-R.jpg"
+import ryanHit from "../media/Ryan-U.jpg"
 const MoleContainer = styled.div`
 	position: relative;
   height: 20vh;
@@ -33,7 +33,7 @@ const ImageContainer = styled.img`
   height: 20vh;
 `;
 const Moles = ({setMoleHitted, setMole}) => {
-	const moles = [[putin, putinHitted], [trump, trumpHitted], [ryan, ryanHit], [will, willHit]];
+	const moles = [[putin, putinHitted], [trump, trumpHitted], [ryan, ryanHit], [leo, leoHit]];
 	const [playVisibility, setPlayVisibility] = useState(null);
 	const setTheMole = (index) => {
 		setMole(moles[index][0]);
