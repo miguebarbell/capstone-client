@@ -8,6 +8,22 @@ import leo from "../media/leo.jpg";
 import leoHit from "../media/leo-u.jpg";
 import ryan from "../media/Ryan-R.jpg"
 import ryanHit from "../media/Ryan-U.jpg";
+import charles from "../media/charles1.png";
+import charlesHit from "../media/charles2.png";
+import elijah from "../media/elijah1.png";
+import elijahHit from "../media/elijah2.png";
+import joel from "../media/joel1.png";
+import joelHit from "../media/joel2.png";
+import miguel from "../media/miguel1.png";
+import miguelHit from "../media/miguel2.png";
+import matthew from "../media/matthew1.png";
+import matthewhit from "../media/matthew2.png";
+import orquid from "../media/orquidia1.png";
+import orquidHit from "../media/orquidia2.png";
+import rich from "../media/rich1.png";
+import richHit from "../media/rich2.png";
+import nich from "../media/nich1.png";
+import nichHit from "../media/nich2.png";
 import {DefaultContainer} from "./Home";
 var MOLE_SIZE = 10;
 const MoleContainer = styled.div`
@@ -60,7 +76,7 @@ const MolesContainer = styled(DefaultContainer)`
 
 `
 const Moles = ({setMoleHitted, setMole}) => {
-	const moles = [[putin, putinHitted], [trump, trumpHitted], [ryan, ryanHit], [leo, leoHit]];
+	const moles = [[putin, putinHitted], [trump, trumpHitted], [ryan, ryanHit], [leo, leoHit], [charles, charlesHit], [elijah, elijahHit],[joel, joelHit], [miguel, miguelHit], [orquid, orquidHit], [matthew, matthewhit], [rich, richHit], [nich, nichHit]];
 	const [playVisibility, setPlayVisibility] = useState(null);
 	const setTheMole = (index) => {
 		setMole(moles[index][0]);
