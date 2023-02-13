@@ -7,7 +7,10 @@ import trumpHitted from "../media/trump2.png";
 import leo from "../media/leo.jpg";
 import leoHit from "../media/leo-u.jpg";
 import ryan from "../media/Ryan-R.jpg"
-import ryanHit from "../media/Ryan-U.jpg"
+import ryanHit from "../media/Ryan-U.jpg";
+import {DefaultContainer} from "./Home";
+
+var MOLE_SIZE = 10;
 const MoleContainer = styled.div`
 	position: relative;
   height: ${MOLE_SIZE}vh;
