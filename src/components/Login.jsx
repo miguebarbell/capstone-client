@@ -1,9 +1,10 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
-import {AUTHENTICATION_REQUEST} from "../helpers/requests";
+import {AUTHENTICATION_REQUEST, BASE_URL} from "../helpers/requests";
 import {DefaultContainer, HEADER_HEIGHT} from "./Home";
 import {Button} from "./Level";
+import CryptoJS from "crypto-js";
 
 const Form = styled.form`
 	margin-top: ${HEADER_HEIGHT}vh;
@@ -27,6 +28,7 @@ const Login = ({setJwt, setUser, endpoint}) => {
 	const [password, setPassword] = useState(null);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setPassword(CryptoJS.AES.encrypt(password, BASE_URL).toString());
 		await AUTHENTICATION_REQUEST(endpoint, username, password)
 			.then(res => res.json())
 			.then(res => {
