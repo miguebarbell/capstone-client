@@ -9,6 +9,7 @@ import Score from "./Score";
 import {Button} from "./Level";
 
 const GridContainer = styled.div`
+	margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -81,17 +82,11 @@ const Game = ({jwt, cells, target, targetHitted, username}) => {
 	}
 
 	const submitHandler = async () => {
-		// alert('submit');
-		// console.log(jwt);
-		// console.log(username);
-		// console.log(difficulty());
-		// console.log(scoreState[0]);
 		const scoreToSubmit = {
 			username,
 			score: scoreState[0],
 			difficulty: difficulty()}
 		await SUBMIT_SCORES(scoreToSubmit, jwt)
-			// .then(res => console.log(res.status))
 			.then(res => res.json())
 			.then(res => console.log(res))
 			.then(navigate(`/scores/${username}/${difficulty()}`))

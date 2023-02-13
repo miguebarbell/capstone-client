@@ -24,15 +24,19 @@ const Wrapper = styled.div`
 	  width: 100%;
   }
 `;
-const Home = () => {
+const Home = ({jwt}) => {
 	const navigator = useNavigate();
 	return (
 		<DefaultContainer>
 			<Wrapper>
 				<h1>Wack A Mole</h1>
-				<Button onClick={()=>navigator("/login")}><span>Login</span></Button>
-				<Button onClick={()=>navigator("/register")}><span>Register</span></Button>
 				<Button onClick={()=>navigator("/play")}><span>Play</span></Button>
+				{jwt ? <Button onClick={()=>window.location.reload()}><span>Logout</span></Button> :
+				 <>
+					 <Button onClick={()=>navigator("/login")}><span>Login</span></Button>
+					 <Button onClick={()=>navigator("/register")}><span>Register</span></Button>
+				 </>
+				}
 			</Wrapper>
 		</DefaultContainer>
 	);

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {StateHeader} from "./Clock";
 
 const ScoreSpan = styled.span`
 	font-weight: bolder;
@@ -6,9 +7,9 @@ const ScoreSpan = styled.span`
 `
 const Score = ({score}) => {
 	return (
-		<div>
+		<StateHeader>
 			Score: <ScoreSpan score={score}>{score}</ScoreSpan>
-		</div>
+		</StateHeader>
 	)
 }
 export default Score;
