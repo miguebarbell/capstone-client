@@ -28,7 +28,7 @@ const HighScores = () => {
 	return (
 		<DefaultContainer>
 		<h1>
-			Scores for {difficulty}
+			Leaderboard @ {difficulty}
 		</h1>
 			{scores.map(score => <div key={score.id}>
 				<span>{score.score} - {score.username}</span>

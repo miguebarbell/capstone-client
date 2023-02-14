@@ -70,7 +70,7 @@ const Game = ({jwt, cells, target, targetHitted, username}) => {
 	const [gamestate, setGamestate] = useState(initialStatus);
 	const [timeframe, setTimeframe] = useState(1000);
 	const [clockState, setClockState] = useState(true);
-	const [time, setTime] = useState(20);
+	const [time, setTime] = useState(2);
 
 	function activator() {
 		if (time > 0) {
