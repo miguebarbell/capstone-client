@@ -5,6 +5,12 @@ import {PUBLIC_SCORES} from "../helpers/requests";
 import {DefaultContainer} from "./Home";
 import {Button} from "./Level";
 
+const ScoreLeaderboard = styled.span`
+color: ${({index}) => (index < 3) ? 'rgba(57,255,20)' :
+                      (index <5 ) ? 'rgba(250,237,39)' :
+                      'rgba(255, 255, 255, 0.8)'};
+`
+
 const PlayAgainButton = styled(Button)`
   margin-top: 1rem;
 
@@ -36,8 +42,8 @@ const HighScores = () => {
 			<h1>
 				Leaderboard @ {difficulty}
 			</h1>
-			{scores.map(score => <div key={score.id}>
-				            <span>{score.score}pts. @ {prettydate(score.created)} {score.username}</span>
+			{scores.map((score, index) => <div key={score.id}>
+				            <ScoreLeaderboard index={index}>{score.score}pts. @ {prettydate(score.created)} {score.username}</ScoreLeaderboard>
 			            </div>
 			)}
 
