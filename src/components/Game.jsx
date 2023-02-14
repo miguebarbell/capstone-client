@@ -9,7 +9,7 @@ import Score from "./Score";
 import {Button} from "./Level";
 
 const GridContainer = styled.div`
-	margin-top: 1rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -26,18 +26,20 @@ const Blocker = styled.div`
   font-weight: bolder;
   justify-content: center;
   align-content: center;
-	align-items: center;
+  align-items: center;
   text-align: center;
   flex-direction: column;
-	button {
-		//width: 100px;
+
+  button {
+    //width: 100px;
 
     font-family: Atraries;
-		font-size: 15px;
-		span {
-			height: initial;
-		}
-	}
+    font-size: 15px;
+
+    span {
+      height: initial;
+    }
+  }
 `;
 
 
@@ -84,12 +86,20 @@ const Game = ({jwt, cells, target, targetHitted, username}) => {
 	const submitHandler = async () => {
 		const scoreToSubmit = {
 			username,
-			score: scoreState[0],
-			difficulty: difficulty()}
+			score     : scoreState[0],
+			difficulty: difficulty()
+		};
+		console.log(scoreToSubmit);
+		console.log(jwt);
 		await SUBMIT_SCORES(scoreToSubmit, jwt)
-			.then(res => res.json())
-			.then(res => console.log(res))
-			.then(navigate(`/scores/${username}/${difficulty()}`))
+			.then(res => {
+				if (res.status === 201) {
+					navigate(`/scores/${username}/${difficulty()}`);
+				} else {
+					alert("Something went wrong.")
+					navigate(`/highscores/${difficulty()}`);
+				}
+			})
 	};
 
 	const seeHighScores = () => {

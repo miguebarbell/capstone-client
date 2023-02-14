@@ -33,7 +33,6 @@ const HighScores = () => {
 			{scores.map(score => <div key={score.id}>
 				<span>{score.score} - {score.username}</span>
 			            </div>
-
 				)}
 
 			<PlayAgainButton onClick={()=>navigate("/play")}><span>Play another</span></PlayAgainButton>

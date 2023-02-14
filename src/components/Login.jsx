@@ -7,14 +7,16 @@ import {Button} from "./Level";
 import CryptoJS from "crypto-js";
 
 const Form = styled.form`
-	margin-top: ${HEADER_HEIGHT}vh;
-	display: flex;
-	flex-direction: column;
+  margin-top: ${HEADER_HEIGHT}vh;
+  display: flex;
+  flex-direction: column;
+
   button {
-	  span {
-		  height: initial;
-	  }
+    span {
+      height: initial;
+    }
   }
+
   input, label {
     margin: 15px 0;
     text-align: center;
@@ -30,12 +32,24 @@ const Login = ({setJwt, setUser, endpoint}) => {
 		e.preventDefault();
 		const hashedPassword = CryptoJS.HmacSHA256(password, "secretkey").toString();
 		await AUTHENTICATION_REQUEST(endpoint, username, hashedPassword)
-			.then(res => res.json())
 			.then(res => {
+				if (res.status !== 403 && res.status !== 500 && res.status !== 400) {
+
+					console.log(res);
+					return res.json();
+				} else if (res.status === 400) {
+					console.log(res);
+					alert(`username ${username} already exists.`);
+				} else {
+					console.log(res);
+					alert("bad credentials");
+				}
+			}).then(res => {
 				setJwt(res.jwt);
+				console.log(res.jwt);
 				setUser(username);
+				navigate("/play");
 			});
-		navigate("/play");
 	};
 
 	return (
