@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useNavigate, useNavigation} from "react-router-dom";
 import styled from "styled-components";
 import {USER_SCORES} from "../helpers/requests";
+import {prettydate} from "./HighScores";
 import {DefaultContainer} from "./Home";
 
 
@@ -25,7 +26,8 @@ const Scores = ({jwt}) => {
 			<h3>Your TOP10 @ {difficulty}</h3>
 			{scores.map(score =>
 				            <CellScore key={score.id} onClick={()=> navigate("/highscores/" + difficulty)}>
-				<span>{score.score} - {score.username}</span>
+
+					            <span>{score.score}pts. @ {prettydate(score.created)}</span>
 			</CellScore>)}
 		</DefaultContainer>
 	);
