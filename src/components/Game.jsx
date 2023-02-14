@@ -89,6 +89,8 @@ const Game = ({jwt, cells, target, targetHitted, username}) => {
 			score     : scoreState[0],
 			difficulty: difficulty()
 		};
+		console.log(scoreToSubmit);
+		console.log(jwt);
 		await SUBMIT_SCORES(scoreToSubmit, jwt)
 			.then(res => {
 				if (res.status === 201) {

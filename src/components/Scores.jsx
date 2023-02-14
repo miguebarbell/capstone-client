@@ -23,7 +23,8 @@ const Scores = ({jwt}) => {
 	return (
 		<DefaultContainer>
 			<h3>Your TOP10 @ {difficulty}</h3>
-			{scores.map(score => <CellScore key={score.id} onClick={()=> navigate("/highscores/" + difficulty)}>
+			{scores.map(score =>
+				            <CellScore key={score.id} onClick={()=> navigate("/highscores/" + difficulty)}>
 				<span>{score.score} - {score.username}</span>
 			</CellScore>)}
 		</DefaultContainer>
