@@ -30,12 +30,20 @@ const Login = ({setJwt, setUser, endpoint}) => {
 		e.preventDefault();
 		const hashedPassword = CryptoJS.HmacSHA256(password, "secretkey").toString();
 		await AUTHENTICATION_REQUEST(endpoint, username, hashedPassword)
-			.then(res => res.json())
 			.then(res => {
+				if (res.status !== 403 && res.status !== 500 && res.status !== 400) {
+					return res.json()
+				} else if (res.status === 400) {
+					console.log(res);
+					alert(`username ${username} already exists.`)
+				} else {
+					alert("bad credentials");
+				}
+			}).then(res => {
 				setJwt(res.jwt);
 				setUser(username);
-			});
-		navigate("/play");
+				navigate("/play");
+			})
 	};
 
 	return (
