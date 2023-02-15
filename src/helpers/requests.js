@@ -1,5 +1,7 @@
 
-export const BASE_URL = "http://localhost:8080/";
+// export const BASE_URL = "http://localhost:8088/";
+// export const BASE_URL = "http://192.168.0.6:8088/";
+export const BASE_URL = "http://73.100.97.89:8088/";
 // export const BASE_URL = "http://54.80.16.38:8080/";
 
 export const AUTHENTICATION_REQUEST = async (endpoint, username, password) => {
