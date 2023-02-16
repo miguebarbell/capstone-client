@@ -18,8 +18,9 @@ export var DefaultContainer = styled.div`
     font-family: Atraries;
     src: url(../font/PressStart2P.ttf);
   }
+	
 `;
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   button {
 	  width: 100%;
   }
