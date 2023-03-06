@@ -1,17 +1,13 @@
 import styled from "styled-components";
-import {DefaultContainer} from "./Home";
-const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-  button {
-	  width: 200px;
-    span {
-      height: initial;
-    }
-  }
-`
+import {DefaultContainer, Wrapper} from "./Home";
+// const Wrapper = styled(DefaultContainer)`
+//   button {
+// 	  width: 200px;
+//     span {
+//       height: initial;
+//     }
+//   }
+// `
 
 export const Button = styled.button`
   @font-face {
@@ -32,7 +28,7 @@ export const Button = styled.button`
   max-width: 100%;
   min-width: 140px;
   padding: 3px;
-  margin: 10vh 0vh;
+  margin: 10vh 0;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
@@ -68,21 +64,21 @@ span {background-color: rgb(5, 6, 45);
 @media (min-width: 1440px) {
     font-size: 24px;
     min-width: 196px;
-	margin: 7vh 0vh;
+	margin: 7vh 0;
 }
 `
 var H2 = styled.h2`
-margin: 3vh 0vh;
+margin: 3vh 0;
 text-align: center;
 	color: white;
 @media (min-width: 1440px) {
     font-size: 24px;
     min-width: 196px;
-	margin: 0vh 0vh;
+	margin: 0 0;
 }	
 @media (max-width: 375px){
 	text-align: center;
-	margin: 0vh
+	margin: 0;
 }
 //@max(max-width: 425px){
 //	text-align:center;
@@ -107,7 +103,7 @@ const Level = ({setLevel}) => {
 					<span>Hard</span>
 				</Button>
 			</Wrapper>
-		</DefaultContainer>
+		 </DefaultContainer>
 	)
 
 }

@@ -26,6 +26,8 @@ import nich from "../media/nich1.png";
 import nichHit from "../media/nich2.png";
 import samuel from "../media/samuel1.png";
 import samuelHit from "../media/samuel2.png";
+import sierra from "../media/sierra1.png";
+import sierraHit from "../media/sierra2.png";
 
 import {DefaultContainer} from "./Home";
 
@@ -94,6 +96,7 @@ const Moles = ({setMoleHitted, setMole}) => {
 		[charles, charlesHit],
 		[orquid, orquidHit],
 		[matthew, matthewhit],
+		[sierra, sierraHit],
 		[nich, nichHit],
 		[rich, richHit]
 	];

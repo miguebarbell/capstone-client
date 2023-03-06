@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import {HEADER_HEIGHT} from "./Home";
-import {Button} from "./Level";
 
 const AuthButton = styled.button`
   font-family: Atraries;
@@ -49,6 +48,10 @@ const Header = ({user}) => {
 		const timeout = setTimeout(() => setButtons(false), 2000);
 		return () => clearTimeout(timeout);
 	}, [buttons]);
+	const logout = () => {
+		navigator("/");
+		window.location.reload()
+	}
 
 	return (
 		<HeaderContainer>
@@ -58,7 +61,7 @@ const Header = ({user}) => {
 					 !buttons ? <span onClick={() => setButtons(true)}>{user}</span> :
 					 <>
 						 <AuthButton color={"limegreen"} onClick={() => navigator("/")}>Home</AuthButton>
-						 <AuthButton color={"red"} onClick={() => window.location.reload()}>Logout</AuthButton>
+						 <AuthButton color={"red"} onClick={() => logout()}>Logout</AuthButton>
 					 </>
 				 }
 			 </> :

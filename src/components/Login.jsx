@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
-import {AUTHENTICATION_REQUEST, BASE_URL} from "../helpers/requests";
+import {AUTHENTICATION_REQUEST} from "../helpers/requests";
 import {DefaultContainer, HEADER_HEIGHT} from "./Home";
 import {Button} from "./Level";
 import CryptoJS from "crypto-js";
@@ -34,19 +34,14 @@ const Login = ({setJwt, setUser, endpoint}) => {
 		await AUTHENTICATION_REQUEST(endpoint, username, hashedPassword)
 			.then(res => {
 				if (res.status !== 403 && res.status !== 500 && res.status !== 400) {
-
-					console.log(res);
 					return res.json();
 				} else if (res.status === 400) {
-					console.log(res);
 					alert(`username ${username} already exists.`);
 				} else {
-					console.log(res);
 					alert("bad credentials");
 				}
 			}).then(res => {
 				setJwt(res.jwt);
-				console.log(res.jwt);
 				setUser(username);
 				navigate("/play");
 			});
@@ -63,7 +58,6 @@ const Login = ({setJwt, setUser, endpoint}) => {
 				       placeholder="John"
 				       onChange={(e) => {
 					       setUsername(e.target.value);
-					       // setUser(e.target.value)
 				       }}
 				/>
 				<br/>
